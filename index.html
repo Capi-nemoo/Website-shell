@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Mi Portafolio Interactivo</title>
+        <!-- CSS de jQuery Terminal -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/jquery.terminal/css/jquery.terminal.min.css"
+        />
+
+        <!-- Incluir CSS de jQuery Terminal más adelante -->
+
+        <style>
+            body {
+                background-color: #1e1e1e;
+                color: #ffffff;
+                font-family: "Courier New", Courier, monospace;
+            }
+            #terminal {
+                margin: 0 auto;
+                max-width: 1600px;
+                padding-top: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Contenedor para la terminal -->
+        <div id="terminal"></div>
+
+        <!-- Incluir scripts de JavaScript más adelante -->
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- jQuery Terminal Emulator -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery.terminal/js/jquery.terminal.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $("#terminal").terminal(
+                    function (command, term) {
+                        if (command !== "") {
+                            // Aquí manejas los comandos ingresados por el usuario
+                            if (command === "ayuda") {
+                                term.echo(
+                                    "Comandos disponibles: ayuda, sobre, proyectos, contacto",
+                                );
+                            } else if (command === "sobre") {
+                                term.echo(
+                                    "Hola, soy [Tu Nombre], un desarrollador...",
+                                );
+                            } else if (command === "proyectos") {
+                                term.echo(
+                                    "1. Proyecto A\n2. Proyecto B\n3. Proyecto C",
+                                );
+                            } else if (command === "contacto") {
+                                term.echo(
+                                    "Puedes contactarme en: tuemail@example.com",
+                                );
+                            } else {
+                                term.echo(
+                                    'Comando no reconocido, escribe "ayuda" para ver los comandos disponibles.',
+                                );
+                            }
+                        } else {
+                            term.echo("");
+                        }
+                    },
+                    {
+                        greetings:
+                            'Bienvenido a mi portafolio interactivo. Escribe "ayuda" para ver los comandos disponibles.',
+                        name: "portafolio",
+                        height: 400,
+                        prompt: ">>> ",
+                    },
+                );
+            });
+        </script>
+    </body>
+</html>
