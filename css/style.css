@@ -1,0 +1,77 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000000;
+}
+
+/* Estilo para el terminal */
+#terminal {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(77, 71, 71, 0.5);
+    /* Agrega el borde a la terminal */
+    border: 2px solid #1e1f1d; /* Borde verde de 2 píxeles */
+    border-radius: 10px; /* Esquinas redondeadas */
+    /* Añade sombra si lo deseas */
+    /* box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); */
+}
+
+#terminal2 {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(77, 71, 71, 0.5);
+    /* Agrega el borde a la terminal */
+    border: 2px solid #1e1f1d; /* Borde verde de 2 píxeles */
+    border-radius: 10px; /* Esquinas redondeadas */
+    /* Añade sombra si lo deseas */
+    /* box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); */
+}
+
+#screen {
+    position: absolute;
+    top: 200px; /* Ajusta la posición según la imagen */
+    left: 550px; /* Ajusta la posición según la imagen */
+    width: 1200px;
+    height: 800px;
+    background-color: rgba(47, 54, 72, 0.76);
+    border-radius: 10px;
+    overflow: hidden;
+    /* Si deseas agregar un borde al contenedor de la pantalla */
+    /* border: 2px solid #00ff00; */
+}
+
+#screen2 {
+    position: absolute;
+    top: 300px; /* Ajusta la posición según necesites */
+    left: 1000px; /* Ajusta la posición según necesites */
+    width: 1200px;
+    height: 800px;
+    background-color: transparent;
+    border-radius: 10px;
+    overflow: hidden;
+    /* Puedes agregar un borde si lo deseas */
+    /* border: 2px solid #00ff00; */
+}
+
+/* Estilos para la terminal (plugin) */
+.terminal {
+    background-color: rgba(0, 0, 0, 0.5) !important; /* Fondo negro translúcido */
+    box-shadow: none !important;
+    color: rgb(222, 222, 222); /* Color del texto de la terminal */
+    /* Si prefieres otro nivel de opacidad, ajusta el valor alfa (0.0 - 1.0) */
+    /* background-color: rgba(0, 0, 0, 0.8) !important; */
+}
+
+/* Estilo para el contenedor de la computadora */
+.computer {
+    position: relative;
+    width: 2300px;
+    height: 1400px;
+    background: url('/terminal-web/docs/pixelart3.gif') no-repeat center center;
+    background-size: cover;
+}
