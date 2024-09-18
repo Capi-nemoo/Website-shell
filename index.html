@@ -1,79 +1,123 @@
 <!doctype html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Mi Portafolio Interactivo</title>
-        <!-- CSS de jQuery Terminal -->
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/jquery.terminal/css/jquery.terminal.min.css"
-        />
+<html lang="en">
+<head>
+    <!-- Metadatos y enlaces a estilos -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal on Computer</title>
+    <!-- CSS de jQuery Terminal -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/jquery.terminal/css/jquery.terminal.min.css"
+    />
+    <!-- Tu propio CSS -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000000;
+        }
 
-        <!-- Incluir CSS de jQuery Terminal más adelante -->
+        .computer {
+            position: relative;
+            width: 2300px;
+            height: 1400px;
+            background: url('/terminal-web/docs/cmptr.gif') no-repeat center center;
+            background-size: cover;
+        }   
 
-        <style>
-            body {
-                background-color: #1e1e1e;
-                color: #ffffff;
-                font-family: "Courier New", Courier, monospace;
-            }
-            #terminal {
-                margin: 0 auto;
-                max-width: 1600px;
-                padding-top: 50px;
-            }
-        </style>
-    </head>
-    <body>
-        <!-- Contenedor para la terminal -->
-        <div id="terminal"></div>
+        .screen {
+            position: absolute;
+            top: 298px; /* Ajusta la posición según la imagen */
+            left: 426px; /* Ajusta la posición según la imagen */
+            width: 723px;
+            height: 319px;
+            /* Puedes cambiar el color de fondo o hacerlo transparente */
+            background-color: transparent;
+            /* Si deseas que el fondo sea transparente, comenta la línea anterior y descomenta la siguiente */
+            /* background-color: transparent; */
+            border-radius: 10px;
+            overflow: hidden;
+        }
 
-        <!-- Incluir scripts de JavaScript más adelante -->
-        <!-- jQuery -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <!-- jQuery Terminal Emulator -->
-        <script src="https://cdn.jsdelivr.net/npm/jquery.terminal/js/jquery.terminal.min.js"></script>
+        #terminal {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            /* Añade el borde aquí */
+            border: 2px solid #6fb3c6; /* Borde verde de 2 píxeles */
+            border-radius: 10px; /* Esquinas redondeadas */ 
+            box-shadow: 0 0 10px rgba(73, 178, 227, 0.5); /* Sombra verde suave */
+        }
 
-        <script>
-            $(document).ready(function () {
-                $("#terminal").terminal(
-                    function (command, term) {
-                        if (command !== "") {
-                            // Aquí manejas los comandos ingresados por el usuario
-                            if (command === "ayuda") {
-                                term.echo(
-                                    "Comandos disponibles: ayuda, sobre, proyectos, contacto",
-                                );
-                            } else if (command === "sobre") {
-                                term.echo(
-                                    "Hola, soy [Tu Nombre], un desarrollador...",
-                                );
-                            } else if (command === "proyectos") {
-                                term.echo(
-                                    "1. Proyecto A\n2. Proyecto B\n3. Proyecto C",
-                                );
-                            } else if (command === "contacto") {
-                                term.echo(
-                                    "Puedes contactarme en: tuemail@example.com",
-                                );
-                            } else {
-                                term.echo(
-                                    'Comando no reconocido, escribe "ayuda" para ver los comandos disponibles.',
-                                );
-                            }
-                        } else {
-                            term.echo("");
+
+        /* Estilos para hacer el fondo de la terminal transparente */
+        .terminal {
+            background-color:  rgba(180, 156, 35, 0.4)  !important;
+            /* box-shadow: none !important;*/
+            /* Puedes cambiar el color del texto de la terminal aquí 
+            color: rgba(0, 0, 0, 0.5) !important;
+            box-shadow: none !important;
+            color: rgb(0, 0, 0, 0.5); /* Ajusta el color del texto si es necesario */
+}
+            /* Si deseas otro color, comenta la línea anterior y descomenta la siguiente */
+            /* color: #00ff00; */ /* Verde brillante */
+        
+
+        .terminal .terminal-output,
+        .terminal .terminal-output div {
+            background-color: transparent !important;
+        }
+
+        .terminal .cmd {
+            background-color: transparent !important;
+        }
+
+        /* Si deseas probar con un fondo semitransparente, puedes usar rgba */
+        /* .terminal {
+            background-color: rgba(0, 0, 0, 0.5) !important;  /* Fondo negro semitransparente */
+        /* } */
+
+        /* Aquí puedes agregar más estilos */
+    </style>
+</head>
+<body>
+    <div class="computer">
+        <div class="screen">
+            <div id="terminal"></div>
+        </div>
+    </div>
+
+    <!-- Scripts necesarios -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.terminal/js/jquery.terminal.min.js"></script>
+    <script>
+        $(function() {
+            $('#terminal').terminal(function(command) {
+                if (command !== '') {
+                    try {
+                        var result = window.eval(command);
+                        if (result !== undefined) {
+                            this.echo(String(result));
                         }
-                    },
-                    {
-                        greetings:
-                            'Bienvenido a mi portafolio interactivo. Escribe "ayuda" para ver los comandos disponibles.',
-                        name: "portafolio",
-                        height: 400,
-                        prompt: ">>> ",
-                    },
-                );
+                    } catch(e) {
+                        this.error(String(e));
+                    }
+                } else {
+                    this.echo('');
+                }
+            }, {
+                greetings: 'Welcome to my virtual terminal!',
+                name: 'js_demo',
+                height: '100%',
+                width: '100%',
+                prompt: 'user@website:~$ '
             });
-        </script>
-    </body>
+        });
+    </script>
+</body>
 </html>
